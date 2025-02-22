@@ -2,7 +2,10 @@ from .models import Library
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+<<<<<<< HEAD
 from django.contrib.auth.forms import UserCreationForm
+=======
+>>>>>>> 552b7a11d4ac0a749a2b53b19f66345bbd2b3539
 from django.views.generic import DetailView
 from .models import Book, Library
 
