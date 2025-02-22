@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 from django.views.generic.detail import DetailView
 from .models import Library
 from django.views.generic.detail import DetailView
+=======
+from .models import Library
+>>>>>>> b34957c31e466f90cadc1ef483824f0b06b11f1e
 from django.shortcuts import render
 from django.views.generic import DetailView
 from .models import Book, Library
