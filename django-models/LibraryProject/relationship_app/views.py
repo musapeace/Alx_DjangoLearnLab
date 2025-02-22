@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-from django.views.generic.detail import DetailView
 from .models import Library
-from django.views.generic.detail import DetailView
-=======
-from .models import Library
->>>>>>> b34957c31e466f90cadc1ef483824f0b06b11f1e
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views.generic import DetailView
 from .models import Book, Library
 
@@ -19,3 +15,33 @@ class LibraryDetailView(DetailView):
     model = Library
     template_name = 'relationship_app/library_detail.html'
     context_object_name = 'library'
+
+
+def user_login(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect("home")  # Redirect to a homepage or dashboard
+    else:
+        form = AuthenticationForm()
+    return render(request, "relationship_app/login.html", {"form": form})
+
+# User Logout View
+def user_logout(request):
+    logout(request)
+    return render(request, "relationship_app/logout.html")
+
+
+# User Registration View
+def user_register(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Automatically log in the user after registration
+            return redirect("home")  # Redirect to homepage
+    else:
+        form = UserCreationForm()
+    return render(request, "relationship_app/register.html", {"form": form})
