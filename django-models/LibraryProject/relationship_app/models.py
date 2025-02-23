@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import Permission
 
 # Create your models here.
 
@@ -24,6 +25,14 @@ class Author(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    published_date = models.DateField()
+
+    class Meta:
+        permissions = [
+            ("can_add_book", "Can add book"),
+            ("can_edit_book", "Can edit book"),
+            ("can_delete_book", "Can delete book"),
+        ]
 
     def __str__(self):
         return self.title
@@ -41,4 +50,7 @@ class Librarian(models.Model):
     library = models.ForeignKey(Library, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name        
+        return self.name    
+
+    
+print(Permission.objects.filter(codename="can_change_book"))
