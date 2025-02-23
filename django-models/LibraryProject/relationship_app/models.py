@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import Permission
+
 
 # Create your models here.
 
@@ -30,7 +30,7 @@ class Book(models.Model):
     class Meta:
         permissions = [
             ("can_add_book", "Can add book"),
-            ("can_edit_book", "Can edit book"),
+            ("can_change_book", "Can change a book"),
             ("can_delete_book", "Can delete book"),
         ]
 
@@ -53,4 +53,3 @@ class Librarian(models.Model):
         return self.name    
 
     
-print(Permission.objects.filter(codename="can_change_book"))
