@@ -1,4 +1,5 @@
 from django.urls import path
+from .views import setup_test_users
 from .views import list_books, LibraryDetailView
 from LibraryProject.relationship_app import views
 from .views import user_login, user_logout, user_register
@@ -24,4 +25,5 @@ urlpatterns = [
     path('add_book/', views.add_book, name='add_book'),
     path('edit_book/<int:book_id>/', views.edit_book, name='edit_book'),
     path('delete/<int:book_id>/', views.delete_book, name='delete_book'),
+    path("setup-test-users/", setup_test_users, name="setup-test-users"),
 ]

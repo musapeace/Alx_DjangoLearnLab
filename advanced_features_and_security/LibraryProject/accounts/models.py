@@ -30,8 +30,16 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(null=True, blank=True)
     profile_photo = models.ImageField(upload_to='profile_photos/', blank=True, null=True)
+
+    class Meta:
+        permissions = [
+            ("can_view", "Can view records"),
+            ("can_create", "Can create records"),
+            ("can_edit", "Can edit records"),
+            ("can_delete", "Can delete records"),
+        ]
 
     objects = CustomUserManager()
 
