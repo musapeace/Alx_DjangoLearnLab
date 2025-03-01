@@ -1,8 +1,13 @@
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import permission_required
-from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Book  # Ensure your model is imported
+
+def book_list(request):
+    books = Book.objects.all()
+    return render(request, "bookshelf/book_list.html", {"books": books})
+
 
 @permission_required('accounts.can_view', raise_exception=True)
 def view_records(request):
