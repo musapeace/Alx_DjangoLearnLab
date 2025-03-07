@@ -133,8 +133,12 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
+<<<<<<< HEAD
         'rest_framework.permissions.AllowAny',
         'rest_framework.permissions.IsAuthenticated',  # Allows access to all users by default
+=======
+        'rest_framework.permissions.AllowAny',  # Allows access to all users by default
+>>>>>>> 98df779d04ec2a442d437ac95a11456a61ee6d5e
     ),
 }
 
