@@ -5,6 +5,7 @@ from rest_framework import filters
 from .models import Author, Book
 from django_filters.rest_framework import DjangoFilterBackend
 from .serializers import AuthorSerializer, BookSerializer
+["ListView", "DetailView", "UpdateView", "DeleteView"]
 
 class AuthorListCreateView(generics.ListCreateAPIView):
     """API endpoint for listing and creating authors."""
@@ -23,3 +24,16 @@ class BookListCreateView(generics.ListCreateAPIView):
     
     ordering_fields = ['title', 'publication_year']
     ordering = ['title']
+
+class BookListView(generics.ListAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+
+    filterset_fields = ['title', 'author', 'publication_year']
+
+    search_fields = ['title', 'author']
+
+
+    ordering_fields = ['title', 'publication_year']
