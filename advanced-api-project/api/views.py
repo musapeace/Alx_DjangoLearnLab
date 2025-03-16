@@ -13,7 +13,7 @@ class AuthorListCreateView(generics.ListCreateAPIView):
     serializer_class = AuthorSerializer
 
 class BookListCreateView(generics.ListCreateAPIView):
-    """API endpoint for listing and creating books."""
+
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
@@ -37,3 +37,8 @@ class BookListView(generics.ListAPIView):
 
 
     ordering_fields = ['title', 'publication_year']
+
+
+class BookDetailUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
