@@ -2,6 +2,7 @@ from django.test import TestCase
 from rest_framework.test import APIClient
 from rest_framework import status
 from .models import Book
+["self.client.login"]
 
 class BookAPITestCase(TestCase):
     def setUp(self):
