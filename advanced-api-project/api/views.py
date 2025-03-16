@@ -5,6 +5,7 @@ from rest_framework import filters
 from .models import Author, Book
 from django_filters.rest_framework import DjangoFilterBackend
 from .serializers import AuthorSerializer, BookSerializer
+"from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated", "IsAuthenticated"
 ["ListView", "DetailView", "UpdateView", "DeleteView"]
 
 class AuthorListCreateView(generics.ListCreateAPIView):
